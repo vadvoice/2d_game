@@ -1,5 +1,5 @@
 // init functioin
-// setInterval(draw, 10)
+setInterval(draw, 10)
 
 // variables:
 
@@ -99,7 +99,7 @@ function draw() {
             dy = -dy;
         }
         else {
-            console.log("GAME OVER");
+            alert("GAME OVER");
             document.location.reload();
         }
     }
