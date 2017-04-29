@@ -1,10 +1,13 @@
 body {
-  color: orange;
-  font-size: 2rem;
+  display: flex;
+  justify-content: center;
   background: #888;
-  margin: 10px;
-  border: 10px solid white;
-  padding: 70px; }
+  margin: 10px; }
+  body h1 {
+    transition: .2s; }
+    body h1:hover {
+      color: white; }
 
 canvas {
-  background: #ddd; }
+  background: #ddd;
+  display: flex; }
