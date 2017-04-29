@@ -1,4 +1,4 @@
-
+// init functioin
 // setInterval(draw, 10)
 
 // variables:
@@ -76,10 +76,16 @@ function drawBricks() {
 // ************** function render game canvas **************
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 1
     drawBall();
+    // 2
     drawPaddle();
+    // 3
     drawBricks();
+    // 4
     collisionDetection();
+    // 5
+    drawScore();
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
@@ -143,8 +149,22 @@ function collisionDetection() {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
+                    score++;
+                    if(score == brickRowCount*brickColumnCount) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                    }
                 }
             }
         }
     }
+}
+
+// score
+var score = 0;
+
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
 }
