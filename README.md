@@ -21,4 +21,4 @@ Publish contents to Github pages
 gulp deploy
 ```
 
-demo:
+demo: https://willfulaversion.github.io/2d_game/

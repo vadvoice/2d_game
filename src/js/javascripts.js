@@ -1,5 +1,5 @@
 // init functioin
-setInterval(draw, 10)
+// setInterval(draw, 10)
 
 // variables:
 
@@ -120,7 +120,7 @@ var leftPressed = false;
 // key listener
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
-
+document.addEventListener("mousemove", mouseMoveHandler, false);
 // events function
 function keyDownHandler(e) {
     if(e.keyCode == 39) {
@@ -167,4 +167,12 @@ function drawScore() {
     ctx.font = "16px Arial";
     ctx.fillStyle = "#0095DD";
     ctx.fillText("Score: "+score, 8, 20);
+}
+
+// event for mouse
+function mouseMoveHandler(e) {
+    var relativeX = e.clientX - canvas.offsetLeft;
+    if(relativeX > 0 && relativeX < canvas.width) {
+        paddleX = relativeX - paddleWidth/2;
+    }
 }
