@@ -11,7 +11,7 @@ var x = canvas.width/2;
 var y = canvas.height-30;
 // speed
 var dx = 1;
-var dy = -2;
+var dy = -3;
 // characteristic ball
 var ballRadius = 10;
 // paddle
@@ -35,12 +35,47 @@ function drawPaddle() {
     ctx.fill();
     ctx.closePath();
 }
+// bricks characteristic
+var brickRowCount = 3;
+var brickColumnCount = 5;
+var brickWidth = 110;
+var brickHeight = 20;
+var brickPadding = 10;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
 
-// function render game canvas
+// create bricks array
+var bricks = [];
+for(c=0; c<brickColumnCount; c++) {
+    bricks[c] = [];
+    for(r=0; r<brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0 };
+    }
+}
+
+// draw func bricks
+function drawBricks() {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
+            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+}
+
+// ************** function render game canvas **************
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
+    drawBricks();
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
@@ -48,12 +83,13 @@ function draw() {
     if(y + dy < ballRadius) {
         dy = -dy;
     }
+    // game over verification
     else if(y + dy > canvas.height-ballRadius) {
         if(x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
         }
         else {
-            alert("GAME OVER");
+            console.log("GAME OVER");
             document.location.reload();
         }
     }
